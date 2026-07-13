@@ -13,6 +13,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(currentTab.id, { type: "GET_PRICES" }, function (response) {
         if (chrome.runtime.lastError || !response) {
             // this will happen on pages where script can't run, like the Chrome Web Store or some internal pages
+            statusMessage.textContent = "I cannot work in this webpage :c";
             return;
         }
         displayPriceSuggestions(response.prices);

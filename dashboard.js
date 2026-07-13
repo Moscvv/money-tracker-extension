@@ -18,10 +18,21 @@ const currencySymbols = {
   AUD: "A$"
 };
 
+
 function formatMoney(amount, currency) {
     const symbol = currencySymbols[currency] || "";
     return symbol + amount.toFixed(2);
 }
+
+
+// fixes the fragile date parsing
+function getDayFromExpense(expense) {
+    if (typeof expense.date !== "string" || !expense.date.includes ("T")) {
+        return "Unknown Date";
+    }
+    return  expense.date.split("T")[0];
+
+}    
 
 
 //Adds up all the expenses and displays the total
@@ -48,14 +59,13 @@ function renderTotal(expenses) {
 }
 
 
-
 //Group expenses by day (only day part, not the time), and total each group.
 function renderDailyTable(expenses) {
     const totalsByDayAndCurrency = {};
     
     for (let i = 0; i < expenses.length; i++) {
        const expense = expenses[i];
-       const dayKey = expense.date.split("T")[0]; // If a row is ever missing/malformed — e.g. from a future edit feature or manually-edited storage — this .split("T")[0] call will throw and break the whole render.
+       const dayKey = getDayFromExpense(expense);
        const currency = expense.currency || "USD";
        const combinedKey = dayKey + "|" + currency; // e.g. "2024-05-01|EUR"
   
@@ -85,9 +95,9 @@ function renderExpenseTable(expenses) {
 
     for (let i = 0; i < expenses.length; i++) {
         const expense = expenses[i];
-        const day = expense.date.split("T")[0];
-
+        const day = getDayFromExpense(expense);
         const row = document.createElement("tr");
+
         row.innerHTML =
           "<td>" + day + "</td>" +
           "<td>" + expense.category + "</td>" +
@@ -95,6 +105,7 @@ function renderExpenseTable(expenses) {
           "<td><button class='deleteButton' data-id='" + expense.id + "'>Delete</button></td>";
         tableBody.appendChild(row);
     }
+
 
     //Attach a click handler to each delete button
     const deleteButtons = document.querySelectorAll(".deleteButton");
@@ -106,7 +117,12 @@ function renderExpenseTable(expenses) {
     });    
 }
 
+
 function deleteExpense(idToDelete) {
+    if (!confirm ("Are you sure you want to delete this?")) {
+        return;
+    }
+
     chrome.storage.local.get({ expenses: [] }, function (result) {
         const expenses = result.expenses;
         const updatedExpenses = expenses.filter(function (expense) {
@@ -114,7 +130,9 @@ function deleteExpense(idToDelete) {
         });
 
         chrome.storage.local.set({ expenses: updatedExpenses }, function () {
-            location.reload(); // Refresh the page to show updated tables
+            renderTotal(updatedExpenses);
+            renderDailyTable(updatedExpenses);
+            renderExpenseTable(updatedExpenses);
         });
     });
-}            
+}  
