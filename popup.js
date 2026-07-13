@@ -37,9 +37,7 @@ function displayPriceSuggestions(prices) {
             const numericValue = price.replace(/[^0-9.]/g, "");
             amountInput.value = numericValue;
 
-            console.log("Raw price string:", JSON.stringify(price));
-            console.log("Char codes:", [...price].map(c => c.charCodeAt(0)));
-
+            
             // figuring wich currency symbol was used, and remember it
             if (price.includes("\u00A3")) {        // £
               currencyInput.value = "GBP";
