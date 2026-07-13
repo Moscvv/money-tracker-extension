@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Money Tracker Dashboard</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                max-width: 500px;
+                margin: 30px auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+            th, td {
+                border: 1px solid #ccc;
+                padding: 6px 10px;
+                text-align: left;
+            }
+            h2 { margin-bottom: 0; }
+        </style>
+    </head>
+    <body>
+        <h1>Spending Dashboard</h1>
+
+        <h2 id="totalSpent"></h2>
+        <p>Total spent</p>
+        
+        <h3>Spending by day</h3>
+        <table id="dailyTable">
+            <thead>
+               <tr><th>Date</th><th>Total</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h3>All expenses</h3>
+        <table id="expenseTable">
+            <thead>
+                <tr><th>Date</th><th>Category</th><th>Amount</th><th>Actions</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        
+        <script src="dashboard.js"></script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Money Tracker</title>
+        <style>
+            body {
+                width: 220px;
+                font-family: sans-serif;
+                padding: 10px;
+            }
+            input, select, button {
+                width: 100%;
+                margin-top: 6px;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Log and expenses</h3>
+
+        <input type="number" id="amountInput" placeholder="Amount spent" />
+
+        <select id="categoryInput">
+            <option value="food">Food</option>
+            <option value="shopping">Shopping</option>
+            <option value="bills">Bills</option>
+            <option value="other">Other</option>
+        </select>
+
+        <select id="currencyInput">
+             <option value="USD">USD ($)</option>
+             <option value="GBP">GBP (£)</option>
+             <option value="EUR">EUR (€)</option>
+             <option value="JPY">JPY (¥)</option>
+             <option value="AUD">AUD (A$)</option>
+        </select>
+        
+        <button id="saveButton">Save</button>
+
+        <p id="statusMessage"></p>
+
+        <button id="dashboardButton">View Dashboard</button>
+
+        <script src="popup.js"></script>
+    </body>
+</html>
