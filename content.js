@@ -1,7 +1,7 @@
 // This file runs INSIDE the actual webpage you're visiting (not the popup)
 
 // One pattern per currency style, then combined together
-const dollarPoundEuroPattern = /(?<!A)[\$\u00A3\u20AC]\d{1,3}(,\d{3})*(\.\d{2})?/g; // $, £, € (but not A$)
+const dollarPoundEuroPattern = /(?<!A)[\$\u00A3\u20AC]\d{1,3}(,\d{3})*(\.\d{2})?/g; // NOTE: only excludes "A$" — "C$"/"S$" etc. will still be misread as USD.
 const euroAfterPattern = /\d{1,3}(,\d{3})*(\.\d{2})?\u20AC/g;
 const yenPattern = /\u00A5\d{1,3}(,\d{3})*/g;
 const audPattern = /(A\$|AUD\s?)\d{1,3}(,\d{3})*(\.\d{2})?/g;

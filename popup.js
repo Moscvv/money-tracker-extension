@@ -37,7 +37,7 @@ function displayPriceSuggestions(prices) {
             const numericValue = price.replace(/[^0-9.]/g, "");
             amountInput.value = numericValue;
 
-            
+
             // figuring wich currency symbol was used, and remember it
             if (price.includes("\u00A3")) {        // £
               currencyInput.value = "GBP";
@@ -88,7 +88,7 @@ saveButton.addEventListener("click", function () {
         chrome.storage.local.set({ expenses: expenses }, function () {
             statusMessage.textContent = "Saved!";
             amountInput.value = "";
-            selectedCurrency = "USD"; //reset to default
+            currencyInput.value = "USD"; //reset to default
         });
     });
 });

@@ -55,7 +55,7 @@ function renderDailyTable(expenses) {
     
     for (let i = 0; i < expenses.length; i++) {
        const expense = expenses[i];
-       const dayKey = expense.date.split("T")[0]; // "2025-03-01T10:00:00" -> "2025-03-01"
+       const dayKey = expense.date.split("T")[0]; // If a row is ever missing/malformed — e.g. from a future edit feature or manually-edited storage — this .split("T")[0] call will throw and break the whole render.
        const currency = expense.currency || "USD";
        const combinedKey = dayKey + "|" + currency; // e.g. "2024-05-01|EUR"
   
