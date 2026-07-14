@@ -1,6 +1,6 @@
 # Money Tracker — Chrome Browser Extension
 
-A lightweight, privacy-first personal finance tracker that lives in your browser toolbar. Log expenses manually or auto-detect prices from the page you're currently viewing — all data stays 100% local, with no server, no account, and no network calls of any kind.
+A lightweight, finance tracker that  is built locally. Log expenses manually or auto-detect prices from the page you're currently viewing — all data stays 100% local, with no server, no account, and no network calls of any kind.
 
 ## Features
 
